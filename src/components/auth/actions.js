@@ -7,7 +7,7 @@ import {
   signin as signinApi
 } from '../../services/api';
 
-export const singup = credentials => ({
+export const signup = credentials => ({
   type: USER_AUTH,
   payload: signupApi(credentials)
 });
