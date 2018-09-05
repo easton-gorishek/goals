@@ -11,7 +11,8 @@ class Credentials extends Component {
   }
 
   static propTypes = {
-    action: PropTypes.string.isRequired
+    action: PropTypes.string.isRequired,
+    allowName: PropTypes.bool
   }
 
   handleChange = ({ target }) => {
@@ -20,18 +21,19 @@ class Credentials extends Component {
 
   render() { 
     const { name, email, password } = this.state;
-    const { action } = this.props;
+    const { action, allowName = false } = this.props;
 
     return (
       <form>
-        <FormControl label="name">
-          <input name="name" value={name} onChange={this.handleChange}/>
-        </FormControl>
-
+        { allowName && 
+          <FormControl label="name">
+            <input name="name" value={name} onChange={this.handleChange}/>
+          </FormControl>
+        }
         <FormControl label="email">
           <input name="email" value={email} onChange={this.handleChange}/>
         </FormControl>
-
+        
         <FormControl label="password">
           <input 
             type="password" 
