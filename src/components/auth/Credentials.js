@@ -14,18 +14,22 @@ class Credentials extends Component {
     action: PropTypes.string.isRequired
   }
 
+  handleChange = ({ target }) => {
+    this.setState({ [target.name]: target.value });
+  };
+
   render() { 
     const { name, email, password } = this.state;
     const { action } = this.props;
-    
+
     return (
       <form>
         <FormControl label="name">
-          <input name="name" value={name}/>
+          <input name="name" value={name} onChange={this.handleChange}/>
         </FormControl>
 
         <FormControl label="email">
-          <input name="email" value={email}/>
+          <input name="email" value={email} onChange={this.handleChange}/>
         </FormControl>
 
         <FormControl label="password">
@@ -33,6 +37,7 @@ class Credentials extends Component {
             type="password" 
             name="password" 
             value={password}
+            onChange={this.handleChange}
           />
         </FormControl>
 
