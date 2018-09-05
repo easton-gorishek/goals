@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import FormControl from '../shared/FormControl';
 
-class Credentials extends Component {
+class Credentials extends PureComponent {
 
   state = {
     name: '',
@@ -11,6 +11,7 @@ class Credentials extends Component {
   }
 
   static propTypes = {
+    submit: PropTypes.func.isRequired,
     action: PropTypes.string.isRequired,
     allowName: PropTypes.bool
   }
@@ -19,12 +20,18 @@ class Credentials extends Component {
     this.setState({ [target.name]: target.value });
   };
 
+  handleSubmit = event => {
+    event.preventDefault();
+    this.props.submit(this.state)
+      .catch(() => {});
+  }
+
   render() { 
     const { name, email, password } = this.state;
     const { action, allowName = false } = this.props;
 
     return (
-      <form>
+      <form onSubmit={this.handleSubmit}>
         { allowName && 
           <FormControl label="name">
             <input name="name" value={name} onChange={this.handleChange}/>

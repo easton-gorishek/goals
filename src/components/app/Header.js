@@ -1,9 +1,24 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { getUser } from '../auth/reducers';
+import { logout } from '../auth/actions';
 
 class Header extends Component {
 
+  static propTypes = {
+    user: PropTypes.object,
+    logout: PropTypes.func.isRequired
+  }
+
+  handleLogout = () => {
+    this.props.logout();
+  }
+
   render() { 
+    const { user } = this.props;
+
     return (
       <div>
         <h1>Goal App</h1>
@@ -16,7 +31,10 @@ class Header extends Component {
               <NavLink exact to="/goals">Goals</NavLink>
             </li>
             <li>
-              <NavLink exact to="/auth">Login</NavLink>
+              { user
+                ? <NavLink to ="/" onClick={this.handleLogout}>Logout</NavLink>
+                : <NavLink exact to="/auth">Login</NavLink>
+              }
             </li>
           </ul>
         </nav>
@@ -25,4 +43,7 @@ class Header extends Component {
   }
 }
  
-export default Header;
+export default connect(
+  state => ({ user: getUser(state) }),
+  { logout }
+)(Header);
