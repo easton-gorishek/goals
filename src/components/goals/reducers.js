@@ -8,7 +8,7 @@ export function goals(state = [], { type, payload }) {
     case GOALS_LOAD:
       return payload;
     case GOAL_ADD:
-      return state;
+      return [...state, payload];
     default:
       return state;
   }
