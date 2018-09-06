@@ -7,7 +7,7 @@ import { getCheckedAuth } from '../auth/reducers';
 import PrivateRoute from './PrivateRoute';
 import Header from './Header';
 import Home from './Home';
-import Goals from '../goals/Goals';
+import Dashboard from '../goals/Dashboard';
 import Auth from '../auth/Auth';
 
 class App extends Component {
@@ -36,7 +36,7 @@ class App extends Component {
               <Switch>
                 <Route exact path="/" component={Home}/>
                 <Route path="/auth" component={Auth}/>
-                <PrivateRoute exact path="/goals" component={Goals}/>
+                <PrivateRoute exact path="/goals" component={Dashboard}/>
                 <Redirect to="/"/>
               </Switch>
             }
