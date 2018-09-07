@@ -1,4 +1,4 @@
-import { get, post } from './request';
+import { get, post, put } from './request';
 
 const URL = '/api';
 const AUTH_URL = `${URL}/auth`;
@@ -15,3 +15,7 @@ export const verifyUser = token => get(`${AUTH_URL}/verify`, {
 
 export const getGoals = () => get(GOALS_URL);
 export const postGoal = data => post(GOALS_URL, data);
+export const putGoal = goal => {
+  const { _id, ...copy } = goal;
+  return put(`${GOALS_URL}/${_id}`, copy);
+};
