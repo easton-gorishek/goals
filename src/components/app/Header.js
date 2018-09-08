@@ -31,6 +31,9 @@ class Header extends Component {
               <NavLink exact to="/goals">Goals</NavLink>
             </li>
             <li>
+              <NavLink exact to="/users">Users</NavLink>
+            </li>
+            <li>
               { user
                 ? <NavLink to ="/" onClick={this.handleLogout}>Logout</NavLink>
                 : <NavLink exact to="/auth">Login</NavLink>

@@ -13,9 +13,11 @@ export const verifyUser = token => get(`${AUTH_URL}/verify`, {
   }
 });
 
-export const getGoals = () => get(GOALS_URL);
+export const getGoalsById = () => get(GOALS_URL);
 export const postGoal = data => post(GOALS_URL, data);
 export const putGoal = goal => {
   const { _id, ...copy } = goal;
   return put(`${GOALS_URL}/${_id}`, copy);
 };
+
+export const getAllGoals = () => get(`${URL}/users`);

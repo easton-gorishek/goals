@@ -9,6 +9,7 @@ import Header from './Header';
 import Home from './Home';
 import Dashboard from '../goals/Dashboard';
 import Auth from '../auth/Auth';
+import Users from '../users/Users';
 
 class App extends Component {
 
@@ -37,6 +38,7 @@ class App extends Component {
                 <Route exact path="/" component={Home}/>
                 <Route path="/auth" component={Auth}/>
                 <PrivateRoute exact path="/goals" component={Dashboard}/>
+                <PrivateRoute exact path="/users" component={Users}/>
                 <Redirect to="/"/>
               </Switch>
             }
