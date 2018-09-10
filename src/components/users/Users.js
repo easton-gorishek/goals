@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { getUsers } from './reducers';
 import { connect } from 'react-redux';
 import { loadUsers } from './actions';
+import User from './User';
 
 class Users extends Component {
 
@@ -16,10 +17,18 @@ class Users extends Component {
   }
 
   render() { 
-    console.log(this.props.users[0]);
+    const { users } = this.props;
+    console.log(this.props.users);
 
     return ( 
-      <h2>I am Users</h2>
+      <ul>
+        {users.map(user => (
+          <User
+            key={user._id} 
+            user={user}
+          />
+        ))}
+      </ul>
     );
   }
 }
